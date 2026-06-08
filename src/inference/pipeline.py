@@ -22,16 +22,14 @@ Usage:
 """
 
 import logging
-import time
 import os
-from pathlib import Path
-from typing import Dict, Generator, List, Optional, Tuple, Union
+from typing import Generator, List, Optional, Tuple, Union
 
 import cv2
 import numpy as np
 
-from .detector import Detection, DetectionResult, VehicleDetector
-from .tracker import VehicleTracker, TrackingSummary
+from .detector import DetectionResult, VehicleDetector
+from .tracker import TrackingSummary, VehicleTracker
 
 logger = logging.getLogger(__name__)
 

@@ -2,7 +2,6 @@
 Prediction Router — Core detection and tracking endpoints.
 """
 
-import os
 import uuid
 from pathlib import Path
 from typing import Optional
@@ -13,7 +12,7 @@ from sqlalchemy.orm import Session
 from ..config import settings
 from ..database import get_db
 from ..models import DetectionRecord, VideoRecord
-from ..schemas import DetectionResponse, VideoTrackingResponse, BBoxResponse, TrackResponse
+from ..schemas import BBoxResponse, DetectionResponse, TrackResponse, VideoTrackingResponse
 
 router = APIRouter()
 

@@ -4,7 +4,6 @@ API Integration Tests
 Tests for the FastAPI backend endpoints.
 """
 
-import pytest
 
 
 class TestHealthEndpoints:

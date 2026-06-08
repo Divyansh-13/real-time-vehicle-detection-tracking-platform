@@ -18,11 +18,10 @@ Usage:
     is_valid, issues = validator.validate()
 """
 
-import os
 import logging
-from pathlib import Path
-from typing import Dict, List, Tuple, Set
 from dataclasses import dataclass, field
+from pathlib import Path
+from typing import Dict, List, Set, Tuple
 
 logger = logging.getLogger(__name__)
 
@@ -189,7 +188,7 @@ class DatasetValidator:
                     severity='warning',
                     file=str(label_path),
                     line=line_num,
-                    message=f'Duplicate box detected'
+                    message='Duplicate box detected'
                 ))
             seen_boxes.add(box_key)
 
@@ -302,14 +301,14 @@ class DatasetValidator:
         print(f"  Warnings: {len(result.warnings)}")
 
         if result.errors:
-            print(f"\n  ❌ ERRORS (must fix):")
+            print("\n  ❌ ERRORS (must fix):")
             for issue in result.errors[:20]:  # Show first 20
                 print(f"     {issue.file}:{issue.line} - {issue.message}")
             if len(result.errors) > 20:
                 print(f"     ... and {len(result.errors) - 20} more errors")
 
         if result.warnings:
-            print(f"\n  ⚠️  WARNINGS (review):")
+            print("\n  ⚠️  WARNINGS (review):")
             for issue in result.warnings[:10]:
                 print(f"     {issue.file}:{issue.line} - {issue.message}")
             if len(result.warnings) > 10:

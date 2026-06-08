@@ -17,7 +17,6 @@ Usage:
     augmenter.augment(multiplier=10)
 """
 
-import os
 import logging
 import random
 from pathlib import Path
@@ -318,7 +317,7 @@ class DataAugmenter:
 
         total = total_originals + total_augmented
         print(f"\n{'=' * 60}")
-        print(f"  AUGMENTATION COMPLETE")
+        print("  AUGMENTATION COMPLETE")
         print(f"{'=' * 60}")
         print(f"  Originals:  {total_originals}")
         print(f"  Augmented:  {total_augmented}")

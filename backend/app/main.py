@@ -28,8 +28,9 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 
 from .config import settings
-from .database import engine, Base
-from .routers import auth, upload, predict, analytics, health, models as models_router
+from .database import Base, engine
+from .routers import analytics, auth, health, predict, upload
+from .routers import models as models_router
 from .routers import websocket as ws_router
 
 logging.basicConfig(

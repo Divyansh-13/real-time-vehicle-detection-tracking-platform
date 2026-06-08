@@ -20,13 +20,12 @@ Usage:
     stats = converter.convert()
 """
 
-import xml.etree.ElementTree as ET
-import os
-import shutil
 import logging
-from pathlib import Path
-from typing import Dict, List, Tuple, Optional
+import shutil
+import xml.etree.ElementTree as ET
 from dataclasses import dataclass, field
+from pathlib import Path
+from typing import Dict, List, Optional, Tuple
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 logger = logging.getLogger(__name__)

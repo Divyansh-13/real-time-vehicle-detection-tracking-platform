@@ -5,10 +5,7 @@ Tests for CVAT converter, validator, splitter, and analyzer.
 """
 
 import json
-import os
 from pathlib import Path
-
-import pytest
 
 
 class TestValidator:

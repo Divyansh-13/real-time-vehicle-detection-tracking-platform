@@ -2,10 +2,9 @@
 Models Router — Model management endpoints.
 """
 
-from pathlib import Path
 from typing import List
 
-from fastapi import APIRouter, Depends, HTTPException, Query
+from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 
 from ..database import get_db
@@ -25,7 +24,7 @@ async def list_models(db: Session = Depends(get_db)):
 @router.get("/active", response_model=ModelResponse)
 async def get_active_model(db: Session = Depends(get_db)):
     """Get the currently active model."""
-    model = db.query(ModelRecord).filter(ModelRecord.is_active == True).first()
+    model = db.query(ModelRecord).filter(ModelRecord.is_active).first()
     if not model:
         raise HTTPException(404, "No active model found")
     return model
@@ -47,7 +46,6 @@ async def activate_model(model_id: int, db: Session = Depends(get_db)):
 
     # Reload the detection pipeline with the new model
     try:
-        from ..main import detection_pipeline
         import backend.app.main as main_module
         main_module.detection_pipeline = None  # Force reload
     except Exception:

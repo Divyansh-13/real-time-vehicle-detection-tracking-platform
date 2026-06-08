@@ -6,7 +6,7 @@ Used by both the inference pipeline and analytics modules.
 """
 
 import logging
-from typing import Dict, List, Optional, Tuple
+from typing import Dict, List, Tuple
 
 import cv2
 import numpy as np

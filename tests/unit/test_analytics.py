@@ -4,8 +4,6 @@ Unit Tests — Analytics Modules
 Tests for VehicleCounter, SpeedEstimator, and TrafficHeatmap.
 """
 
-import numpy as np
-import pytest
 from unittest.mock import MagicMock
 
 

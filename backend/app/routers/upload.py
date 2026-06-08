@@ -2,11 +2,10 @@
 Upload Router — File upload handling for images and videos.
 """
 
-import os
 import uuid
 from pathlib import Path
 
-from fastapi import APIRouter, File, UploadFile, HTTPException
+from fastapi import APIRouter, File, HTTPException, UploadFile
 
 from ..config import settings
 

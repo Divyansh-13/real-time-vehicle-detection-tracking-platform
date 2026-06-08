@@ -3,7 +3,6 @@ Analytics Router — Dashboard statistics and historical data.
 """
 
 from datetime import datetime, timedelta
-from typing import Optional
 
 from fastapi import APIRouter, Depends, Query
 from sqlalchemy import func

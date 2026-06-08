@@ -1,1 +1,1 @@
-from . import auth, upload, predict, analytics, health, models
+from . import analytics, auth, health, models, predict, upload

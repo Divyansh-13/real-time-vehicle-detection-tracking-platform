@@ -19,13 +19,12 @@ Usage:
     analyzer.plot_all("datasets/analysis_plots/")
 """
 
-import os
 import json
 import logging
-from pathlib import Path
-from typing import Dict, List, Optional, Tuple
-from dataclasses import dataclass, field, asdict
 from collections import Counter
+from dataclasses import asdict, dataclass, field
+from pathlib import Path
+from typing import Dict, List, Optional
 
 logger = logging.getLogger(__name__)
 
@@ -261,27 +260,27 @@ class DatasetAnalyzer:
         print("  DATASET ANALYSIS REPORT")
         print("=" * 70)
         print(f"\n📁 Dataset: {self.dataset_dir}")
-        print(f"\n📊 Overview:")
+        print("\n📊 Overview:")
         print(f"   Total images:              {r.total_images}")
         print(f"   Total label files:          {r.total_labels}")
         print(f"   Images without labels:      {r.images_without_labels}")
         print(f"   Labels without images:      {r.labels_without_images}")
         print(f"   Total bounding boxes:       {r.total_boxes}")
 
-        print(f"\n🏷️  Class Distribution:")
+        print("\n🏷️  Class Distribution:")
         for class_id, count in sorted(r.class_distribution.items()):
             name = r.class_names.get(class_id, f"class_{class_id}")
             pct = count / r.total_boxes * 100 if r.total_boxes > 0 else 0
             bar = "█" * int(pct / 2) + "░" * (50 - int(pct / 2))
             print(f"   {name:>10s} (id={class_id}): {count:>6d} ({pct:5.1f}%) {bar}")
 
-        print(f"\n📦 Boxes per Image:")
+        print("\n📦 Boxes per Image:")
         print(f"   Min:    {r.min_boxes_per_image}")
         print(f"   Max:    {r.max_boxes_per_image}")
         print(f"   Avg:    {r.avg_boxes_per_image:.1f}")
         print(f"   Median: {r.median_boxes_per_image:.1f}")
 
-        print(f"\n📐 Box Dimensions (normalized):")
+        print("\n📐 Box Dimensions (normalized):")
         print(f"   Avg width:        {r.avg_box_width:.4f}")
         print(f"   Avg height:       {r.avg_box_height:.4f}")
         print(f"   Avg area:         {r.avg_box_area:.4f}")
@@ -289,14 +288,14 @@ class DatasetAnalyzer:
         print(f"   Max area:         {r.max_box_area:.4f}")
         print(f"   Avg aspect ratio: {r.avg_aspect_ratio:.2f}")
 
-        print(f"\n📏 Box Size Distribution:")
+        print("\n📏 Box Size Distribution:")
         print(f"   Tiny  (<0.1%):    {r.tiny_boxes:>6d}")
         print(f"   Small (<1%):      {r.small_boxes:>6d}")
         print(f"   Medium (<5%):     {r.medium_boxes:>6d}")
         print(f"   Large (≥5%):      {r.large_boxes:>6d}")
 
         # Warnings
-        print(f"\n⚠️  Potential Issues:")
+        print("\n⚠️  Potential Issues:")
         if r.images_without_labels > 0:
             print(f"   ⚠ {r.images_without_labels} images have no labels")
         if r.labels_without_images > 0:
@@ -309,7 +308,7 @@ class DatasetAnalyzer:
             counts = list(r.class_distribution.values())
             if max(counts) > 10 * min(counts):
                 print(f"   ⚠ Severe class imbalance: ratio = {max(counts)/min(counts):.1f}:1")
-                print(f"     → Consider class weighting or oversampling minority class")
+                print("     → Consider class weighting or oversampling minority class")
 
         print("\n" + "=" * 70)
 
@@ -341,8 +340,8 @@ class DatasetAnalyzer:
         try:
             import matplotlib
             matplotlib.use('Agg')  # Non-interactive backend
-            import matplotlib.pyplot as plt
             import matplotlib.patches as mpatches
+            import matplotlib.pyplot as plt
         except ImportError:
             logger.warning("matplotlib not installed, skipping plot generation. "
                           "Install with: pip install matplotlib")

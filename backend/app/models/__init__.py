@@ -1,1 +1,1 @@
-from .detection import User, DetectionRecord, VideoRecord, ModelRecord, AnalyticsRecord
+from .detection import AnalyticsRecord, DetectionRecord, ModelRecord, User, VideoRecord

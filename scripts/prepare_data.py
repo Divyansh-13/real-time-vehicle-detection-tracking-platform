@@ -17,19 +17,18 @@ Usage:
     python scripts/prepare_data.py --augmentation-multiplier 5
 """
 
-import sys
-import os
 import logging
+import sys
 from pathlib import Path
 
 # Add project root to path
 PROJECT_ROOT = Path(__file__).parent.parent
 sys.path.insert(0, str(PROJECT_ROOT))
 
-from src.data.cvat_to_yolo import CVATToYOLOConverter
-from src.data.validator import DatasetValidator
-from src.data.dataset_splitter import DatasetSplitter
 from src.data.analyzer import DatasetAnalyzer
+from src.data.cvat_to_yolo import CVATToYOLOConverter
+from src.data.dataset_splitter import DatasetSplitter
+from src.data.validator import DatasetValidator
 
 logging.basicConfig(
     level=logging.INFO,
@@ -146,7 +145,7 @@ def run_pipeline(
     print(f"\n  📁 Processed dataset: {processed_dir}")
     print(f"  📁 Dataset YAML:     {processed_dir}/dataset.yaml")
     print(f"  📊 Analysis report:  {processed_dir}/analysis_report.json")
-    print(f"\n  Next step: python -m src.training.train --config configs/training_config.yaml")
+    print("\n  Next step: python -m src.training.train --config configs/training_config.yaml")
     print("=" * 70 + "\n")
 
 

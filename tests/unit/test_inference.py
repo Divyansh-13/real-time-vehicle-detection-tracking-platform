@@ -4,7 +4,6 @@ Unit Tests — Inference Engine
 Tests for the Detector, Tracker, and Pipeline.
 """
 
-import numpy as np
 import pytest
 
 

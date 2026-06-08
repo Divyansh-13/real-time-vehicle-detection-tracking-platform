@@ -6,7 +6,6 @@ Shared pytest fixtures for the entire test suite.
 
 import os
 import sys
-import tempfile
 from pathlib import Path
 
 import pytest
@@ -149,7 +148,7 @@ def test_db(tmp_path):
     os.environ['UPLOAD_DIR'] = str(tmp_path / 'uploads')
     os.environ['RESULTS_DIR'] = str(tmp_path / 'results')
 
-    from backend.app.database import engine, Base
+    from backend.app.database import Base, engine
     Base.metadata.create_all(bind=engine)
     yield
     Base.metadata.drop_all(bind=engine)
@@ -159,6 +158,7 @@ def test_db(tmp_path):
 def api_client(test_db):
     """FastAPI test client with a clean database."""
     from fastapi.testclient import TestClient
+
     from backend.app.main import app
     client = TestClient(app)
     return client

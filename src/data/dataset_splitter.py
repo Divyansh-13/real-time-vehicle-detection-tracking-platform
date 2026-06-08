@@ -22,13 +22,12 @@ Usage:
     stats = splitter.split(train=0.7, val=0.2, test=0.1)
 """
 
-import os
-import shutil
-import random
 import logging
-from pathlib import Path
-from typing import Dict, List, Tuple, Optional
+import random
+import shutil
 from dataclasses import dataclass, field
+from pathlib import Path
+from typing import Dict, List, Tuple
 
 logger = logging.getLogger(__name__)
 
@@ -171,7 +170,7 @@ class DatasetSplitter:
             n_train = max(1, int(n * train))
             n_val = max(1, int(n * val)) if n > 2 else 0
             # Ensure at least 1 sample in train
-            n_test = n - n_train - n_val
+            n - n_train - n_val
 
             train_samples.extend(bucket_samples[:n_train])
             val_samples.extend(bucket_samples[n_train:n_train + n_val])
@@ -228,7 +227,7 @@ class DatasetSplitter:
 
         # Print summary
         print(f"\n{'=' * 60}")
-        print(f"  DATASET SPLIT COMPLETE")
+        print("  DATASET SPLIT COMPLETE")
         print(f"{'=' * 60}")
         print(f"  Total samples: {stats.total_samples}")
         print(f"  ├── Train: {stats.train_count:>4d} ({stats.train_count/stats.total_samples*100:.0f}%) "
