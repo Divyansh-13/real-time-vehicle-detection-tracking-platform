@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🚗 Real-Time Vehicle Detection & Tracking Platform
+#  Real-Time Vehicle Detection & Tracking Platform
 
 ### *Production-Grade AI-Powered Traffic Intelligence System*
 
@@ -21,13 +21,13 @@
 
 An end-to-end platform that trains a custom YOLOv8 model on vehicle datasets, performs real-time detection and multi-object tracking with ByteTrack, exposes 15+ REST API endpoints via FastAPI, delivers a modern React dashboard with live analytics, and deploys via Docker with full CI/CD, monitoring, and MLOps pipelines.
 
-[🔗 Live Demo](#-live-demo) · [📖 Documentation](#-table-of-contents) · [🚀 Quick Start](#-quick-start) · [🐛 Report Bug](../../issues) · [✨ Request Feature](../../issues)
+[ Live Demo](#-live-demo) · [ Documentation](#-table-of-contents) · [ Quick Start](#-quick-start) · [ Report Bug](../../issues) · [ Request Feature](../../issues)
 
 </div>
 
 ---
 
-## 📸 Screenshots
+##  Screenshots
 
 <div align="center">
 
@@ -47,7 +47,7 @@ An end-to-end platform that trains a custom YOLOv8 model on vehicle datasets, pe
 
 ---
 
-## 📋 Table of Contents
+##  Table of Contents
 
 - [Executive Summary](#-executive-summary)
 - [Model Performance](#-model-performance)
@@ -81,7 +81,7 @@ An end-to-end platform that trains a custom YOLOv8 model on vehicle datasets, pe
 
 ---
 
-## 🎯 Executive Summary
+##  Executive Summary
 
 ### What It Does
 
@@ -108,19 +108,18 @@ This platform provides a **complete, production-ready pipeline** for vehicle det
 
 ---
 
-## 🔗 Live Demo
+##  Live Demo
 
 | Resource | URL |
 |----------|-----|
-| 🌐 Production App | `https://your-deployment-url.com` |
-| 📡 API Endpoint | `https://your-api-url.com/docs` |
-| 📊 Grafana Dashboard | `https://your-monitoring-url.com:3001` |
-| 🧪 MLflow UI | `https://your-mlflow-url.com:5000` |
-| 🎬 Demo Video | *Coming soon* |
+|  Production App | `https://your-deployment-url.com` |
+|  API Endpoint | `https://your-api-url.com/docs` |
+|  Grafana Dashboard | `https://your-monitoring-url.com:3001` |
+|  MLflow UI | `https://your-mlflow-url.com:5000` |
 
 ---
 
-## 📊 Model Performance
+##  Model Performance
 
 <div align="center">
 
@@ -146,46 +145,46 @@ This platform provides a **complete, production-ready pipeline** for vehicle det
 
 ---
 
-## ✨ Features
+##  Features
 
 ### Core Detection & Tracking
 
 | Feature | Description | Module |
 |---------|-------------|--------|
-| 🎯 **Vehicle Detection** | YOLOv8n-based detection with configurable confidence/IoU thresholds | `src/inference/detector.py` |
-| 🏷️ **Vehicle Classification** | 2-class classification: cars and minivans with per-class statistics | `src/inference/detector.py` |
-| 🔗 **Multi-Object Tracking** | ByteTrack algorithm for persistent vehicle IDs across frames | `src/inference/tracker.py` |
-| 📷 **Image Processing** | Single-image detection with annotated output and result storage | `src/inference/pipeline.py` |
-| 🎬 **Video Processing** | Full video tracking with annotated output, summary statistics | `src/inference/pipeline.py` |
-| 📹 **Live Camera** | Real-time webcam detection via WebSocket (browser → server → browser) | `backend/app/routers/websocket.py` |
-| 📡 **RTSP Streams** | Process IP camera feeds via RTSP URLs | `src/inference/pipeline.py` |
+|  **Vehicle Detection** | YOLOv8n-based detection with configurable confidence/IoU thresholds | `src/inference/detector.py` |
+|  **Vehicle Classification** | 2-class classification: cars and minivans with per-class statistics | `src/inference/detector.py` |
+|  **Multi-Object Tracking** | ByteTrack algorithm for persistent vehicle IDs across frames | `src/inference/tracker.py` |
+|  **Image Processing** | Single-image detection with annotated output and result storage | `src/inference/pipeline.py` |
+|  **Video Processing** | Full video tracking with annotated output, summary statistics | `src/inference/pipeline.py` |
+|  **Live Camera** | Real-time webcam detection via WebSocket (browser → server → browser) | `backend/app/routers/websocket.py` |
+|  **RTSP Streams** | Process IP camera feeds via RTSP URLs | `src/inference/pipeline.py` |
 
 ### Analytics Engine
 
 | Feature | Description | Module |
 |---------|-------------|--------|
-| 🔢 **Vehicle Counting** | Line-crossing counter with bidirectional detection (up/down) | `src/analytics/counter.py` |
-| 🏎️ **Speed Estimation** | Pixel-to-real-world speed estimation with smoothing window | `src/analytics/speed_estimator.py` |
-| 🗺️ **Traffic Heatmaps** | Spatial density maps with gaussian spread and temporal decay | `src/analytics/heatmap.py` |
-| 📊 **Detection Timeline** | Historical trends by day/week/month with class breakdowns | `backend/app/routers/analytics.py` |
+|  **Vehicle Counting** | Line-crossing counter with bidirectional detection (up/down) | `src/analytics/counter.py` |
+|  **Speed Estimation** | Pixel-to-real-world speed estimation with smoothing window | `src/analytics/speed_estimator.py` |
+|  **Traffic Heatmaps** | Spatial density maps with gaussian spread and temporal decay | `src/analytics/heatmap.py` |
+|  **Detection Timeline** | Historical trends by day/week/month with class breakdowns | `backend/app/routers/analytics.py` |
 
 ### Platform
 
 | Feature | Description | Module |
 |---------|-------------|--------|
-| 🌐 **REST API** | 15+ endpoints with Swagger docs, pagination, file upload | `backend/app/routers/` |
-| 🔐 **JWT Authentication** | Register, login, token refresh, role-based access | `backend/app/routers/auth.py` |
-| 📱 **React Dashboard** | 5-page SPA with dark theme, glassmorphism, live stats | `frontend/src/` |
-| 🧪 **MLflow Tracking** | Experiment logging, metric comparison, model versioning | `src/training/train.py` |
-| 📦 **DVC Pipelines** | Reproducible data pipeline from CVAT XML → trained model | `dvc.yaml` |
-| 🐳 **Docker** | 8-service compose (API, frontend, Postgres, Redis, Nginx, MLflow, Prometheus, Grafana) | `deployment/` |
-| 🔄 **CI/CD** | GitHub Actions for lint → test → build → push → deploy | `.github/workflows/` |
-| 📈 **Monitoring** | Prometheus metrics, Grafana dashboards, health checks | `monitoring/` |
-| 🛡️ **Model Export** | ONNX, TorchScript, OpenVINO export for production deployment | `src/training/export.py` |
+|  **REST API** | 15+ endpoints with Swagger docs, pagination, file upload | `backend/app/routers/` |
+|  **JWT Authentication** | Register, login, token refresh, role-based access | `backend/app/routers/auth.py` |
+|  **React Dashboard** | 5-page SPA with dark theme, glassmorphism, live stats | `frontend/src/` |
+|  **MLflow Tracking** | Experiment logging, metric comparison, model versioning | `src/training/train.py` |
+|  **DVC Pipelines** | Reproducible data pipeline from CVAT XML → trained model | `dvc.yaml` |
+|  **Docker** | 8-service compose (API, frontend, Postgres, Redis, Nginx, MLflow, Prometheus, Grafana) | `deployment/` |
+|  **CI/CD** | GitHub Actions for lint → test → build → push → deploy | `.github/workflows/` |
+|  **Monitoring** | Prometheus metrics, Grafana dashboards, health checks | `monitoring/` |
+|  **Model Export** | ONNX, TorchScript, OpenVINO export for production deployment | `src/training/export.py` |
 
 ---
 
-## 🏗️ System Architecture
+##  System Architecture
 
 ### High-Level Architecture
 
@@ -330,7 +329,7 @@ graph LR
 
 ---
 
-## 🛠️ Tech Stack
+##  Tech Stack
 
 ### AI / Machine Learning
 
@@ -388,12 +387,12 @@ graph LR
 
 ---
 
-## 📁 Folder Structure
+##  Folder Structure
 
 ```
 vehicle-tracking-platform/
 │
-├── 📂 backend/                    # FastAPI REST API
+├──  backend/                    # FastAPI REST API
 │   ├── app/
 │   │   ├── main.py                # App entry, lifespan, CORS, router registration
 │   │   ├── config.py              # Pydantic settings (env-based configuration)
@@ -416,7 +415,7 @@ vehicle-tracking-platform/
 │   │   └── utils/                 # Backend utilities
 │   └── Dockerfile                 # Multi-stage: python-slim builder → runtime
 │
-├── 📂 frontend/                   # React SPA
+├──  frontend/                   # React SPA
 │   ├── src/
 │   │   ├── App.jsx                # Sidebar navigation, routing, page transitions
 │   │   ├── main.jsx               # React DOM entry point
@@ -435,7 +434,7 @@ vehicle-tracking-platform/
 │   ├── package.json               # Dependencies: React, Vite, Recharts, Axios
 │   └── Dockerfile                 # Multi-stage: Node build → Nginx serve
 │
-├── 📂 src/                        # Core ML modules
+├──  src/                        # Core ML modules
 │   ├── data/
 │   │   ├── cvat_to_yolo.py        # CVAT XML → YOLO format converter
 │   │   ├── validator.py           # Label validation (ranges, classes, duplicates)
@@ -456,15 +455,15 @@ vehicle-tracking-platform/
 │   └── utils/
 │       └── visualization.py       # Drawing: boxes, trails, counting lines, overlays
 │
-├── 📂 configs/
+├──  configs/
 │   ├── training_config.yaml       # All training hyperparameters
 │   └── (dataset.yaml in datasets/processed/)
 │
-├── 📂 datasets/
+├──  datasets/
 │   ├── raw/                       # Original CVAT annotations + images
 │   └── processed/                 # YOLO-format labels + train/val/test splits
 │
-├── 📂 tests/
+├──  tests/
 │   ├── conftest.py                # Shared fixtures: temp datasets, PNGs, API client
 │   ├── unit/
 │   │   ├── test_data_pipeline.py  # Validator, splitter, analyzer tests
@@ -473,21 +472,21 @@ vehicle-tracking-platform/
 │   └── api/
 │       └── test_api.py            # Health, auth, analytics, upload, predict tests
 │
-├── 📂 deployment/
+├──  deployment/
 │   ├── docker-compose.yml         # 8 services: backend, frontend, postgres, redis, mlflow, nginx, prometheus, grafana
 │   └── nginx/
 │       ├── nginx.conf             # Reverse proxy, rate limiting, WebSocket, gzip
 │       └── frontend.conf          # SPA routing, asset caching
 │
-├── 📂 monitoring/
+├──  monitoring/
 │   └── prometheus/
 │       └── prometheus.yml         # Scrape config: backend (10s), self, node-exporter
 │
-├── 📂 .github/workflows/
+├──  .github/workflows/
 │   ├── ci.yml                     # Lint → Test → Docker Build (push/PR)
 │   └── cd.yml                     # Build → Push GHCR → Deploy Render (main only)
 │
-├── 📂 scripts/
+├──  scripts/
 │   ├── prepare_data.py            # One-command data pipeline orchestrator
 │   └── run_training.py            # Standalone training launcher
 │
@@ -502,7 +501,7 @@ vehicle-tracking-platform/
 
 ---
 
-## 🚀 Quick Start
+##  Quick Start
 
 ### Prerequisites
 
@@ -571,7 +570,7 @@ Dashboard available at **http://localhost:3000**
 
 ---
 
-## 📦 Installation Guide
+##  Installation Guide
 
 ### Windows
 
@@ -618,7 +617,7 @@ docker-compose up -d
 
 ---
 
-## 📊 Dataset Documentation
+##  Dataset Documentation
 
 ### Source
 
@@ -677,7 +676,7 @@ dvc repro
 
 ---
 
-## 🏋️ Training Pipeline
+##  Training Pipeline
 
 ### Training Workflow
 
@@ -724,7 +723,7 @@ Tracked metrics: `train/box_loss`, `train/cls_loss`, `train/dfl_loss`, `val/mAP5
 
 ---
 
-## 🔍 Inference Pipeline
+##  Inference Pipeline
 
 ### Pipeline Flow
 
@@ -751,7 +750,7 @@ Detection(
 
 ---
 
-## 🔗 ByteTrack Integration
+##  ByteTrack Integration
 
 ### How ByteTrack Works
 
@@ -777,7 +776,7 @@ Frame N detections ──→ High-confidence matching (IoU) ──→ Matched tr
 
 ---
 
-## 🌐 Backend Documentation
+##  Backend Documentation
 
 ### Architecture Pattern
 
@@ -813,45 +812,45 @@ pipeline = get_pipeline()
 
 | Method | Endpoint | Description | Auth |
 |--------|----------|-------------|------|
-| `POST` | `/api/v1/auth/register` | Create new user | ❌ |
-| `POST` | `/api/v1/auth/login` | Get JWT tokens | ❌ |
-| `POST` | `/api/v1/auth/refresh` | Refresh access token | 🔒 |
-| `GET` | `/api/v1/auth/me` | Get current user profile | 🔒 |
+| `POST` | `/api/v1/auth/register` | Create new user | No authentication required |
+| `POST` | `/api/v1/auth/login` | Get JWT tokens | No authentication required |
+| `POST` | `/api/v1/auth/refresh` | Refresh access token | Authentication required (JWT token) |
+| `GET` | `/api/v1/auth/me` | Get current user profile | Authentication required (JWT token) |
 
 ### Detection & Tracking
 
 | Method | Endpoint | Description | Auth |
 |--------|----------|-------------|------|
-| `POST` | `/api/v1/predict/image` | Upload image → detect vehicles | ❌ |
-| `POST` | `/api/v1/predict/video` | Upload video → track vehicles | ❌ |
-| `GET` | `/api/v1/predict/{id}` | Get detection result by ID | ❌ |
-| `GET` | `/api/v1/predict/` | List all detections (paginated) | ❌ |
-| `WS` | `/api/v1/ws/detect` | Real-time webcam detection | ❌ |
+| `POST` | `/api/v1/predict/image` | Upload image → detect vehicles | No authentication required |
+| `POST` | `/api/v1/predict/video` | Upload video → track vehicles | No authentication required |
+| `GET` | `/api/v1/predict/{id}` | Get detection result by ID | No authentication required |
+| `GET` | `/api/v1/predict/` | List all detections (paginated) | No authentication required |
+| `WS` | `/api/v1/ws/detect` | Real-time webcam detection | No authentication required |
 
 ### File Upload
 
 | Method | Endpoint | Description | Auth |
 |--------|----------|-------------|------|
-| `POST` | `/api/v1/upload/image` | Upload image file | ❌ |
-| `POST` | `/api/v1/upload/video` | Upload video file | ❌ |
+| `POST` | `/api/v1/upload/image` | Upload image file | No authentication required |
+| `POST` | `/api/v1/upload/video` | Upload video file | No authentication required |
 
 ### Analytics
 
 | Method | Endpoint | Description | Auth |
 |--------|----------|-------------|------|
-| `GET` | `/api/v1/analytics/summary` | Platform-wide statistics | ❌ |
-| `GET` | `/api/v1/analytics/timeline?days=30` | Detection trends | ❌ |
-| `GET` | `/api/v1/analytics/classes` | Class distribution | ❌ |
-| `GET` | `/api/v1/analytics/recent?limit=10` | Recent detections | ❌ |
+| `GET` | `/api/v1/analytics/summary` | Platform-wide statistics | No authentication required |
+| `GET` | `/api/v1/analytics/timeline?days=30` | Detection trends | No authentication required |
+| `GET` | `/api/v1/analytics/classes` | Class distribution | No authentication required |
+| `GET` | `/api/v1/analytics/recent?limit=10` | Recent detections | No authentication required |
 
 ### Model Management
 
 | Method | Endpoint | Description | Auth |
 |--------|----------|-------------|------|
-| `GET` | `/api/v1/models/` | List registered models | ❌ |
-| `GET` | `/api/v1/models/active` | Get active model | ❌ |
-| `POST` | `/api/v1/models/activate/{id}` | Set active model | ❌ |
-| `GET` | `/api/v1/models/info` | Model metadata + metrics | ❌ |
+| `GET` | `/api/v1/models/` | List registered models | No authentication required |
+| `GET` | `/api/v1/models/active` | Get active model | No authentication required |
+| `POST` | `/api/v1/models/activate/{id}` | Set active model | No authentication required |
+| `GET` | `/api/v1/models/info` | Model metadata + metrics | No authentication required |
 
 ### Health
 
@@ -893,7 +892,7 @@ curl -X POST "http://localhost:8000/api/v1/predict/image" \
 
 ---
 
-## 🎨 Frontend Documentation
+##  Frontend Documentation
 
 ### Page Architecture
 
@@ -1000,7 +999,7 @@ erDiagram
 
 ---
 
-## 📈 Monitoring & Observability
+##  Monitoring & Observability
 
 ### Stack
 
@@ -1029,7 +1028,7 @@ Application → Prometheus (scrape every 10s) → Grafana (dashboards + alerts)
 
 ---
 
-## 🔐 Security
+##  Security
 
 | Mechanism | Implementation | Details |
 |-----------|---------------|---------|
@@ -1044,7 +1043,7 @@ Application → Prometheus (scrape every 10s) → Grafana (dashboards + alerts)
 
 ---
 
-## 🐳 Docker Setup
+##  Docker Setup
 
 ### Service Architecture
 
@@ -1085,7 +1084,7 @@ docker-compose up -d --build
 
 ---
 
-## ☁️ Deployment Guide
+##  Deployment Guide
 
 ### Render (Free Tier)
 
@@ -1114,7 +1113,7 @@ kubectl get pods -w
 
 ---
 
-## 🔄 CI/CD Pipeline
+##  CI/CD Pipeline
 
 ### CI Pipeline (`.github/workflows/ci.yml`)
 
@@ -1134,7 +1133,7 @@ kubectl get pods -w
 
 ---
 
-## ⚙️ Environment Variables
+##  Environment Variables
 
 ```env
 # App
@@ -1173,7 +1172,7 @@ RATE_LIMIT_PER_MINUTE=100
 
 ---
 
-## 🧪 Testing
+##  Testing
 
 ### Test Suite
 
@@ -1200,7 +1199,7 @@ pytest tests/api/ -v             # API integration tests
 
 ---
 
-## ⚡ Benchmarking
+##  Benchmarking
 
 ### Inference Performance (CPU — Intel i5-8250U)
 
@@ -1221,9 +1220,9 @@ pytest tests/api/ -v             # API integration tests
 
 ---
 
-## 🗺️ Roadmap
+##  Roadmap
 
-### ✅ Completed
+###  Completed
 
 - [x] Custom YOLOv8 training pipeline
 - [x] ByteTrack multi-object tracking
@@ -1235,7 +1234,7 @@ pytest tests/api/ -v             # API integration tests
 - [x] CI/CD (GitHub Actions)
 - [x] Full test suite
 
-### 🔜 Short-term
+###  Short-term
 
 - [ ] WebSocket tracking (not just detection)
 - [ ] License plate recognition (OCR)
@@ -1243,7 +1242,7 @@ pytest tests/api/ -v             # API integration tests
 - [ ] Export detection reports (PDF/CSV)
 - [ ] Dark/Light theme toggle
 
-### 🔮 Long-term
+###  Long-term
 
 - [ ] Edge deployment (Jetson Nano / Raspberry Pi)
 - [ ] Multi-class expansion (truck, bus, motorcycle)
@@ -1253,7 +1252,7 @@ pytest tests/api/ -v             # API integration tests
 
 ---
 
-## 🔧 Troubleshooting
+##  Troubleshooting
 
 <details>
 <summary><b>CUDA / GPU not detected</b></summary>
@@ -1330,7 +1329,7 @@ Change conflicting ports in `docker-compose.yml`.
 
 ---
 
-## 🤝 Contributing
+##  Contributing
 
 Contributions are welcome! Please follow these guidelines:
 
@@ -1372,22 +1371,11 @@ pytest tests/ -v             # Test
 
 ---
 
-## 📄 License
+##  License
 
 This project is licensed under the **MIT License** — see the [LICENSE](LICENSE) file for details.
 
-```
-MIT License — Copyright (c) 2026
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files, to deal in the Software
-without restriction, including without limitation the rights to use, copy,
-modify, merge, publish, distribute, sublicense, and/or sell copies.
-```
-
----
-
-## 👨‍💻 Authors
+##  Authors
 
 <div align="center">
 
@@ -1399,11 +1387,9 @@ modify, merge, publish, distribute, sublicense, and/or sell copies.
 
 <div align="center">
 
-### ⭐ Star this repo if you found it useful!
+###  Star this repo if you found it useful!
 
 [![GitHub Stars](https://img.shields.io/github/stars/your-username/vehicle-tracking-platform?style=social)](../../stargazers)
 [![GitHub Forks](https://img.shields.io/github/forks/your-username/vehicle-tracking-platform?style=social)](../../forks)
 
 </div>
-#   R e a l - T i m e - V e h i c l e - D e t e c t i o n - T r a c k i n g - P l a t f o r m  
- 
