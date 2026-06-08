@@ -1,0 +1,12 @@
+# YOLOv8 Dataset Configuration
+path: c:/Projects/Car Tracking & Object Detection Dataset/datasets/processed
+
+train: images/train
+val: images/val
+test: images/test
+
+nc: 2
+
+names:
+  0: car
+  1: minivan

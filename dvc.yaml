@@ -1,0 +1,61 @@
+# ============================================================================
+# DVC Pipeline — Dataset & Model Versioning
+# ============================================================================
+# Defines the reproducible pipeline from raw data to trained model.
+# Run: dvc repro
+# ============================================================================
+
+stages:
+  prepare_data:
+    cmd: python -m src.data.cvat_to_yolo --xml datasets/raw/annotations.xml --images datasets/raw/images --output datasets/processed
+    deps:
+      - datasets/raw/annotations.xml
+      - datasets/raw/images/
+      - src/data/cvat_to_yolo.py
+    outs:
+      - datasets/processed/images/all/
+      - datasets/processed/labels/all/
+
+  validate_data:
+    cmd: python -m src.data.validator --dataset datasets/processed --classes 2
+    deps:
+      - datasets/processed/labels/all/
+      - src/data/validator.py
+
+  split_data:
+    cmd: python -m src.data.dataset_splitter --dataset datasets/processed --train 0.7 --val 0.2 --test 0.1
+    deps:
+      - datasets/processed/images/all/
+      - datasets/processed/labels/all/
+      - src/data/dataset_splitter.py
+    outs:
+      - datasets/processed/images/train/
+      - datasets/processed/images/val/
+      - datasets/processed/images/test/
+      - datasets/processed/labels/train/
+      - datasets/processed/labels/val/
+      - datasets/processed/labels/test/
+
+  analyze_data:
+    cmd: python -m src.data.analyzer --dataset datasets/processed --report datasets/analysis_report.json --plots datasets/analysis_plots
+    deps:
+      - datasets/processed/labels/
+      - src/data/analyzer.py
+    outs:
+      - datasets/analysis_report.json
+    plots:
+      - datasets/analysis_plots/class_distribution.png
+      - datasets/analysis_plots/boxes_per_image.png
+
+  train_model:
+    cmd: python -m src.training.train --config configs/training_config.yaml
+    deps:
+      - datasets/processed/images/train/
+      - datasets/processed/labels/train/
+      - configs/training_config.yaml
+      - src/training/train.py
+    outs:
+      - models/vehicle_detector.pt
+    metrics:
+      - runs/train/vehicle_detector/results.csv:
+          cache: false

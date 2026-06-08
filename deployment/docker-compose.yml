@@ -1,0 +1,160 @@
+# ============================================================================
+# Docker Compose — Full Stack
+# ============================================================================
+# Run: docker-compose up -d
+# Stop: docker-compose down
+# Logs: docker-compose logs -f
+# ============================================================================
+
+version: '3.8'
+
+services:
+  # ── Backend (FastAPI + Inference Engine) ──
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    container_name: vehicle-backend
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=postgresql://vehicle:vehicle_pass@postgres:5432/vehicle_tracking
+      - REDIS_URL=redis://redis:6379/0
+      - SECRET_KEY=${SECRET_KEY:-dev-secret-key-change-in-production}
+      - MODEL_PATH=models/vehicle_detector.pt
+      - PRELOAD_MODEL=true
+      - DEBUG=false
+      - CORS_ORIGINS=http://localhost:3000,http://localhost
+    volumes:
+      - ./models:/app/models:ro
+      - upload_data:/app/uploads
+      - result_data:/app/results
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          memory: 4G
+
+  # ── Frontend (React → Nginx) ──
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    container_name: vehicle-frontend
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+  # ── PostgreSQL Database ──
+  postgres:
+    image: postgres:15-alpine
+    container_name: vehicle-postgres
+    environment:
+      POSTGRES_DB: vehicle_tracking
+      POSTGRES_USER: vehicle
+      POSTGRES_PASSWORD: vehicle_pass
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U vehicle"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  # ── Redis (Cache + Rate Limiting) ──
+  redis:
+    image: redis:7-alpine
+    container_name: vehicle-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  # ── MLflow (Experiment Tracking) ──
+  mlflow:
+    image: python:3.10-slim
+    container_name: vehicle-mlflow
+    command: >
+      bash -c "pip install mlflow psycopg2-binary &&
+               mlflow server
+               --host 0.0.0.0
+               --port 5000
+               --backend-store-uri postgresql://vehicle:vehicle_pass@postgres:5432/mlflow
+               --default-artifact-root /mlruns"
+    ports:
+      - "5000:5000"
+    volumes:
+      - mlflow_data:/mlruns
+    depends_on:
+      postgres:
+        condition: service_healthy
+    restart: unless-stopped
+
+  # ── Nginx (Reverse Proxy) ──
+  nginx:
+    image: nginx:alpine
+    container_name: vehicle-nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./deployment/nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - backend
+      - frontend
+    restart: unless-stopped
+
+  # ── Prometheus (Metrics Collection) ──
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: vehicle-prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./monitoring/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.retention.time=30d'
+    restart: unless-stopped
+
+  # ── Grafana (Metrics Visualization) ──
+  grafana:
+    image: grafana/grafana:latest
+    container_name: vehicle-grafana
+    ports:
+      - "3001:3000"
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+      - GF_USERS_ALLOW_SIGN_UP=false
+    volumes:
+      - grafana_data:/var/lib/grafana
+    depends_on:
+      - prometheus
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+  redis_data:
+  mlflow_data:
+  upload_data:
+  result_data:
+  prometheus_data:
+  grafana_data:

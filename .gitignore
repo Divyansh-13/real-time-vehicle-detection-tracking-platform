@@ -1,0 +1,80 @@
+# ============================================================================
+# Vehicle Tracking Platform - .gitignore
+# ============================================================================
+
+# --- Python ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# --- IDE ---
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+.cursor/
+
+# --- OS ---
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# --- Data (tracked by DVC, not Git) ---
+datasets/raw/images/
+datasets/raw/boxes/
+datasets/processed/images/
+datasets/processed/labels/
+datasets/augmented/
+datasets/analysis_plots/
+*.PNG
+*.png
+*.jpg
+*.jpeg
+
+# Keep these data files
+!datasets/processed/dataset.yaml
+!datasets/processed/analysis_report.json
+
+# --- Models (large binary files) ---
+models/*.pt
+models/*.onnx
+models/*.engine
+models/*.tflite
+*.pt
+*.onnx
+
+# --- Training artifacts ---
+runs/
+mlruns/
+experiments/mlflow/mlruns/
+
+# --- Docker ---
+*.log
+
+# --- Environment ---
+.env
+.env.local
+.env.production
+
+# --- Node (frontend) ---
+node_modules/
+frontend/dist/
+frontend/build/
+
+# --- Misc ---
+*.tmp
+*.bak
+*.cache
+.pytest_cache/
+.coverage
+htmlcov/

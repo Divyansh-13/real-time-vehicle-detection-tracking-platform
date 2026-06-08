@@ -1,0 +1,65 @@
+# ============================================================================
+# YOLOv8 Training Configuration
+# ============================================================================
+# This configuration file controls all aspects of model training.
+# Modify values here instead of changing source code.
+# ============================================================================
+
+# --- Model ---
+model: yolov8n.pt              # Base model: yolov8n/s/m/l/x (.pt for pretrained)
+pretrained: true                # Use COCO pre-trained weights (transfer learning)
+
+# --- Dataset ---
+dataset: datasets/processed/dataset.yaml  # Path to dataset YAML
+
+# --- Training ---
+epochs: 25                      # Reduced for CPU training (increase to 100 with GPU)
+imgsz: 640                      # Input image size (640 is YOLO standard)
+batch: 8                        # Batch size (8 for CPU, 16+ for GPU)
+patience: 10                    # Early stopping patience
+device: cpu                     # Device: "0" for GPU, "cpu" for CPU
+workers: 0                      # 0 for Windows CPU (avoids multiprocessing issues)
+
+# --- Optimizer ---
+optimizer: auto                 # auto, SGD, Adam, AdamW
+lr0: 0.01                       # Initial learning rate
+lrf: 0.01                       # Final learning rate (lr0 * lrf)
+momentum: 0.937                 # SGD momentum / Adam beta1
+weight_decay: 0.0005            # L2 regularization
+
+# --- Warmup ---
+warmup_epochs: 3.0              # Warmup epochs (can be fractional)
+warmup_momentum: 0.8            # Warmup initial momentum
+warmup_bias_lr: 0.1             # Warmup initial bias lr
+
+# --- Augmentation (YOLOv8 built-in) ---
+augment: true
+mosaic: 1.0                     # Mosaic augmentation probability
+mixup: 0.1                      # MixUp augmentation probability
+copy_paste: 0.1                 # Copy-paste augmentation
+close_mosaic: 10                # Disable mosaic for last N epochs
+degrees: 10.0                   # Rotation range (degrees)
+translate: 0.1                  # Translation range (fraction)
+scale: 0.5                      # Scale range
+fliplr: 0.5                     # Horizontal flip probability
+flipud: 0.0                     # Vertical flip probability (keep 0 for traffic)
+hsv_h: 0.015                    # Hue augmentation range
+hsv_s: 0.7                      # Saturation augmentation range
+hsv_v: 0.4                      # Value (brightness) range
+
+# --- Output ---
+project: runs/train             # Output project directory
+name: vehicle_detector          # Run name
+exist_ok: true                  # Overwrite existing run
+save: true                      # Save checkpoints
+save_period: -1                 # Save every N epochs (-1 for best only)
+val: true                       # Run validation after each epoch
+plots: true                     # Generate training plots
+
+# --- Export ---
+export_onnx: true               # Export best model to ONNX after training
+
+# --- MLflow ---
+mlflow_tracking: true           # Enable MLflow experiment tracking
+mlflow_experiment: vehicle-detection  # MLflow experiment name
+mlflow_tracking_uri: experiments/mlflow/mlruns  # MLflow tracking directory
