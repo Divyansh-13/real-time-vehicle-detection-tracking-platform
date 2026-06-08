@@ -21,7 +21,7 @@
 
 An end-to-end platform that trains a custom YOLOv8 model on vehicle datasets, performs real-time detection and multi-object tracking with ByteTrack, exposes 15+ REST API endpoints via FastAPI, delivers a modern React dashboard with live analytics, and deploys via Docker with full CI/CD, monitoring, and MLOps pipelines.
 
-[ Live Demo](#-live-demo) · [ Documentation](#-table-of-contents) · [ Quick Start](#-quick-start) · [ Report Bug](../../issues) · [ Request Feature](../../issues)
+[ Documentation](#-table-of-contents) · [ Quick Start](#-quick-start) · [ Report Bug](../../issues) · [ Request Feature](../../issues)
 
 </div>
 
