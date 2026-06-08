@@ -149,6 +149,8 @@ def test_db(tmp_path):
     os.environ['RESULTS_DIR'] = str(tmp_path / 'results')
 
     from backend.app.database import Base, engine
+    # Import models to register them with Base.metadata before creating tables
+    from backend.app.models import User, DetectionRecord, VideoRecord, ModelRecord, AnalyticsRecord  # noqa: F401
     Base.metadata.create_all(bind=engine)
     yield
     Base.metadata.drop_all(bind=engine)
