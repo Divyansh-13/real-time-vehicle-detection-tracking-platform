@@ -1,4 +1,4 @@
 # Analytics engine
-from .counter import VehicleCounter
-from .heatmap import TrafficHeatmap
-from .speed_estimator import SpeedEstimator
+from .counter import VehicleCounter as VehicleCounter
+from .heatmap import TrafficHeatmap as TrafficHeatmap
+from .speed_estimator import SpeedEstimator as SpeedEstimator

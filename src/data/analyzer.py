@@ -340,7 +340,6 @@ class DatasetAnalyzer:
         try:
             import matplotlib
             matplotlib.use('Agg')  # Non-interactive backend
-            import matplotlib.patches as mpatches
             import matplotlib.pyplot as plt
         except ImportError:
             logger.warning("matplotlib not installed, skipping plot generation. "

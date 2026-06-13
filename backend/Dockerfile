@@ -44,10 +44,8 @@ COPY --from=builder /install /usr/local
 COPY src/ ./src/
 COPY backend/ ./backend/
 COPY configs/ ./configs/
-COPY models/ ./models/
-
-# Create necessary directories
-RUN mkdir -p uploads results
+# Create necessary directories (models/ is populated at runtime via volume mount or download)
+RUN mkdir -p models uploads results
 
 # Environment
 ENV PYTHONUNBUFFERED=1 \
