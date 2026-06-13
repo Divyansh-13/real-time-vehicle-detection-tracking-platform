@@ -57,9 +57,10 @@ async def get_current_user(
 
     try:
         payload = jwt.decode(token, settings.SECRET_KEY, algorithms=[settings.ALGORITHM])
-        user_id: int = payload.get("sub")
-        if user_id is None:
+        user_id_raw = payload.get("sub")
+        if user_id_raw is None:
             return None
+        user_id = int(user_id_raw)
     except JWTError:
         return None
 
@@ -113,10 +114,10 @@ async def login(login_data: LoginRequest, db: Session = Depends(get_db)):
         )
 
     access_token = create_access_token(
-        data={"sub": user.id, "email": user.email, "role": user.role}
+        data={"sub": str(user.id), "email": user.email, "role": user.role}
     )
     refresh_token = create_refresh_token(
-        data={"sub": user.id, "email": user.email, "role": user.role}
+        data={"sub": str(user.id), "email": user.email, "role": user.role}
     )
 
     return Token(access_token=access_token, refresh_token=refresh_token)
@@ -136,10 +137,10 @@ async def refresh_token(refresh_token: str, db: Session = Depends(get_db)):
             raise HTTPException(status_code=404, detail="User not found")
 
         new_access = create_access_token(
-            data={"sub": user.id, "email": user.email, "role": user.role}
+            data={"sub": str(user.id), "email": user.email, "role": user.role}
         )
         new_refresh = create_refresh_token(
-            data={"sub": user.id, "email": user.email, "role": user.role}
+            data={"sub": str(user.id), "email": user.email, "role": user.role}
         )
         return Token(access_token=new_access, refresh_token=new_refresh)
 

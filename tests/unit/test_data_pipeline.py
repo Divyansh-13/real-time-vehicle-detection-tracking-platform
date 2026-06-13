@@ -20,7 +20,7 @@ class TestValidator:
             check_images=False,
         )
         is_valid, result = validator.validate()
-        assert is_valid or result.warnings_count >= 0  # May have warnings, not errors
+        assert is_valid or len(result.warnings) >= 0  # May have warnings, not errors
 
     def test_invalid_class_id_fails(self, tmp_path):
         from src.data.validator import DatasetValidator
@@ -35,7 +35,7 @@ class TestValidator:
         validator = DatasetValidator(str(tmp_path), num_classes=2, check_images=False)
         is_valid, result = validator.validate()
         # Should flag the out-of-range class ID
-        assert result.errors_count > 0 or result.warnings_count > 0
+        assert len(result.errors) > 0 or len(result.warnings) > 0
 
     def test_empty_label_file(self, tmp_path):
         from src.data.validator import DatasetValidator
